@@ -20,8 +20,8 @@ amadeus_api_secret = os.environ['AMADEUS_API_SECRET']
 
 # initilize amadeus client
 amadeus = Client(
-    client_id = 'PttadPpRTm50pSGZwMDm3iIB2vnfQvam',
-    client_secret = 'sSY6YUp6dOljue7N',
+    client_id = amadeus_api_key,
+    client_secret = amadeus_api_secret,
     ssl = ssl_context
 )
 
