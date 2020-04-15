@@ -13,6 +13,13 @@ import requests
 from amadeus import Client, ResponseError, Location
 from functools import lru_cache
 
+
+
+
+
+########### 
+# Amadeus #
+########### 
 amadeus_api_key = os.environ['AMADEUS_API_KEY']
 amadeus_api_secret = os.environ['AMADEUS_API_SECRET']
 
@@ -35,10 +42,11 @@ def call_api(url, **params):
 
 response = call_api('/shopping/flight-offers',
                 origin='YYZ',
-                destination='NYC',
+                destination='JFK',
                 departureDate='2020-08-01',
                 returnDate='2020-08-15',
                 adults='1',
+                nonStop='true',
                 currency='CAD',
                 maxPrice='1000',
                 max='5'
