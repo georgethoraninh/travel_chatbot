@@ -10,7 +10,6 @@ usage:  python amadeus_query.py
 import warnings
 warnings.filterwarnings('ignore')
 import os
-import ssl
 import requests
 from amadeus import Client, ResponseError, Location
 from functools import lru_cache
@@ -34,10 +33,15 @@ import pprint as pprint
 import en_core_web_sm # CNN gets loaded in, sees what words depends on each other, POS tagging, entity recognition 
 from spacy import displacy # Visualize NER
 
+from slackeventsapi import SlackEventAdapter
+from slack import WebClient
+import ssl
+
 # Chatterbot
 # from chatterbot import ChatBot
 # from chatterbot.trainers import ListTrainer
 
+# Amadeus variables
 amadeus_api_key = os.environ['AMADEUS_API_KEY']
 amadeus_api_secret = os.environ['AMADEUS_API_SECRET']
 
@@ -48,6 +52,23 @@ auth_response = requests.post('https://api.amadeus.com/v1/security/oauth2/token'
                                     'client_secret': amadeus_api_secret})
 bearer = auth_response.json()['access_token']
 #print(bearer)
+
+# Slack variables
+
+# Used to help verify security certificate
+ssl_context = ssl.create_default_context()
+ssl_context.check_hostname = False
+ssl_context.verify_mode = ssl.CERT_NONE
+
+slack_bot_id = os.environ['SLACK_BOT_ID']
+# Our app's Slack Event Adapter for receiving actions via the Events API
+slack_signing_secret = os.environ["SLACK_SIGNING_SECRET"]
+slack_events_adapter = SlackEventAdapter(slack_signing_secret, "/slack/events")
+
+# Create a Slack WebClient for your bot to use for Web API requests
+slack_bot_token = os.environ["SLACK_BOT_TOKEN"]
+slack_client = WebClient(token = slack_bot_token,
+                         ssl=ssl_context)
 
 
 # Airport codes
@@ -249,6 +270,21 @@ def flight_offer_response(response, extracted_location):
         offer_list.append(response_str)
         
     return offer_list
+
+@slack_events_adapter.on('message')
+def handle_message(event_data):
+  '''
+  Handles Slack messages
+  '''
+  message = event_data['event']
+
+  if message['user'] != slack_bot_id:
+      user_message = message.get('text')
+      channel = message['channel']
+      if 'hi' in user_message:
+          response = 'Hello <@%s>! :tada:' % message['user']
+  
+          slack_client.chat_postMessage(channel=channel,text=response)
 #######
 # MAIN
 #######
@@ -272,3 +308,8 @@ response = flight_offer_get(extracted_location, extracted_date, extracted_price)
 flight_offer_list = flight_offer_response(response, extracted_location)
 
 print(*flight_offer_list, sep='\n\n')
+
+# Once we have our event listeners configured, we can start the
+# Flask server with the default `/events` endpoint on port 3000
+if __name__=="__main__":
+    slack_events_adapter.start(port=3000)
