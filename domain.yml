@@ -1,0 +1,54 @@
+
+intents:
+- greet
+- goodbye
+- affirm
+- deny
+- request_flight
+- inform
+
+slots:
+    place:
+        type: text
+    date:
+        typr: text
+    budget
+    
+    
+entities:
+- place
+- date
+- budget
+
+actions:
+- utter_ask_to_where
+- utter_ask_from_where 
+- utter_ask_duration
+- utter_budget
+- utter_ok
+- utter_greeting
+- utter_unclear
+- __main__.ApiAction
+- utter_flight_offer
+
+templates:
+    utter_ask_to_where
+    - text: 'Where do you want to go?'
+    
+    utter_ask_to_where
+    - text: 'Where are you leaving from?'
+    
+    utter_ask_duration
+    - text: 'How long are you going for?'
+    
+    utter_budget
+    - text: 'What's your budget?
+    
+    utter_ok
+    - text: 'Is this OK?'
+    
+    utter_greeting
+    - text: 'Hey! How are you?'
+    
+    utter_unclear
+    - text: 'I'm not understanding, can you be more clear?'
