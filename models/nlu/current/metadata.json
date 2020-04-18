@@ -80,6 +80,6 @@
             "class": "rasa.nlu.extractors.entity_synonyms.EntitySynonymMapper"
         }
     ],
-    "trained_at": "20200418-020733",
+    "trained_at": "20200418-024929",
     "rasa_version": "1.9.6"
 }

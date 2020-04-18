@@ -58,14 +58,14 @@
 - I want to fly somewhere
 
 ## intent: inform
-- from [Toronto] (place:origin)
-- I'm coming from [New York] (place:origin)
-- I'm going to [Florida] (place:destination)
-- to [Tokyo] (place:destination)
-- from [aug 10] (date:depart_date)
-- leaving [may 4] (date:depart_date)
-- to [aug 20] (date:return_date)
-- come back [may 18] (date:return_date)
+- from [Toronto] (origin)
+- I'm coming from [New York] (origin)
+- I'm going to [Florida] (destination)
+- to [Tokyo] (destination)
+- from [aug 10] (depart_date)
+- leaving [may 4] (depart_date)
+- to [aug 20] (return_date)
+- come back [may 18] (return_date)
 - budget is [$2000] (budget)
 - no more than [1000] (budget)
 - max [$400] (budget)

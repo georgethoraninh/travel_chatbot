@@ -2,14 +2,14 @@
 ## flight path
 * request_flight
     - utter_ask_to_where
-* inform{'place':'destination'}
+* inform{'destination':'tokyo'}
     - utter_ask_from_where 
-* inform{'place':'origin'}
+* inform{'place':'toronto'}
     - utter_ask_duration
-* inform{'date':'depart_date','date':'return_date'}
+* inform{'depart_date':'2020-10-01T00:00:00','return_date':'2020-10-15T00:00:00'}
     - utter_budget
-* inform{'budget':'$1000'}
-    - utter_flight_offer
+* inform{'budget':'1000'}
+    - action_flight_offer
     - utter_ok
 * affirm
     - goodbye
@@ -19,8 +19,8 @@
 * inform{'place':'origin'}
 * inform{'place':'destination'}
 * inform{'date':'depart_date','date':'return_date'}
-* inform{'budget':'$1000'}
-    - utter_flight_offer
+* inform{'budget':'1000'}
+    - action_flight_offer
     - utter_ok
 * affirm
     - goodbye
