@@ -73,7 +73,8 @@ responses:
     - text: "Hello! I am flight search assistant! How can I help?"
   utter_iamabot:
     - text: "I am a bot, powered by Rasa."
- 
+  utter_submit:  
+  - text: "All done!"
 
 forms:
   - flight_form
