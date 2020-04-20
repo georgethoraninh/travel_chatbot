@@ -1,8 +1,9 @@
 from typing import Dict, Text, Any, List, Union, Optional
-
 from rasa_sdk import Tracker
 from rasa_sdk.executor import CollectingDispatcher
 from rasa_sdk.forms import FormAction
+from rasa_sdk import Action
+from rasa_sdk.events import SlotSet
 
 
 class FlighttForm(FormAction):
@@ -26,13 +27,30 @@ class FlighttForm(FormAction):
             or a list of them, where a first match will be picked"""
 
         return {
-            "destination": self.from_entity(entity="destination", not_intent="chitchat"),
-            "origin": self.from_entity(entity="origin", not_intent="chitchat"),
-            "depart_date": self.from_entity(entity="depart_date", not_intent="chitchat"),
-            "return_date": self.from_entity(entity="return_date", not_intent="chitchat"),
-            "budget": self.from_entity(entity="budget", not_intent="chitchat")
+            "destination": self.from_entity(entity="destination", intent="inform"),
+            "origin": self.from_entity(entity="origin", intent="inform"),
+            "depart_date": self.from_entity(entity="depart_date", intent="inform"),
+            "return_date": self.from_entity(entity="return_date", intent="inform"),
+            "budget": self.from_entity(entity="budget", intent="inform"),
         }
-
+        # return {
+        #     "cuisine": self.from_entity(entity="cuisine", not_intent="chitchat"),
+        #     "num_people": [
+        #         self.from_entity(
+        #             entity="number", intent=["inform", "request_restaurant"]
+        #         ),
+        #     ],
+        #     "outdoor_seating": [
+        #         self.from_entity(entity="seating"),
+        #         self.from_intent(intent="affirm", value=True),
+        #         self.from_intent(intent="deny", value=False),
+        #     ],
+        #     "preferences": [
+        #         self.from_intent(intent="deny", value="no additional preferences"),
+        #         self.from_text(not_intent="affirm"),
+        #     ],
+        #     "feedback": [self.from_entity(entity="feedback"), self.from_text()],
+        # }
     def submit(
         self,
         dispatcher: CollectingDispatcher,
@@ -50,3 +68,4 @@ class FlighttForm(FormAction):
         dispatcher.utter_message(text=tracker.get_slot("budget"))
         dispatcher.utter_message(template="utter_submit")
         return []
+

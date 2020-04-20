@@ -85,6 +85,6 @@
             "class": "rasa.nlu.classifiers.sklearn_intent_classifier.SklearnIntentClassifier"
         }
     ],
-    "trained_at": "20200419-192513",
+    "trained_at": "20200419-234532",
     "rasa_version": "1.9.6"
 }

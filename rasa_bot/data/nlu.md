@@ -1,4 +1,3 @@
-
 ## intent:greet
 - Hi
 - Hey
@@ -34,7 +33,7 @@
 - i want to go on a trip
 - i want to book a flight
 - i want to book a trip
-- need a ticket 
+- need a ticket
 - help me find a flight
 - get me out of here
 - i want to travel
@@ -42,10 +41,11 @@
 - can i get a flight
 - find me a flight
 - get me a flight
-- i want to go on a flight 
-- i need a flight 
-- i want a flight from [new york] (origin) to [toronto] (destination)
-- get me a flight from [seattle] (origin) to [denver] (destination)
+- i want to go on a flight
+- i need a flight
+- i want a flight from [new york](origin) to [toronto](destination)
+- get me a flight from [seattle](origin) to [denver](destination)
+- I want to book a flight
 
 ## intent:affirm
 - correct
@@ -53,7 +53,6 @@
 - uh yes
 - let's do it
 - yeah
-- uh yes
 - um yes
 - that's correct
 - yes yes
@@ -81,39 +80,45 @@
 - not what i want
 
 ## intent:inform
-- i'm coming from [toronto] (origin)
-- im coming from [new york] (origin)
-- starting from [vancouver] (origin)
-- start from [los angeles] (origin)
-- leave from [chicago] (origin)
-- leaving from [dallas] (origin)
-- departing from [denver] (origin)
-- depart from [seattle] (origin)
-- from [miami] (origin)
-- i'm going to [florida] (destination)
-- im going to [tokyo] (destination)
-- i want to go to [new york] (destination)
-- i want to get to [denver] (destination)
-- to [tokyo] (destination)
-- lets go to [miami] (destination)
-- let's go to [seattle] (destination)
-- i want to go to [new york] (destination) from [toronto] (origin)
-- get me from [miami] (origin) to [dallas] (destination)
-- im planning on leaving from [august 14] (depart_date) to [september 14] (return_date)
-- trip is planned from [august 14] (depart_date) to [september 14] (return_date)
-- i want to go from [jan 14] (depart_date) to [apr 14] (return_date)
-- leave on [may 14] (depart_date) and get back [june 14] (return_date)
-- leave on [may 4] (depart_date)
-- i want to leave on [january 12] (depart_date)
+- i'm coming from [toronto](origin)
+- im coming from [new york](origin)
+- starting from [vancouver](origin)
+- start from [los angeles](origin)
+- leave from [chicago](origin)
+- leaving from [dallas](origin)
+- departing from [denver](origin)
+- depart from [seattle](origin)
+- from [miami](origin)
+- i'm going to [florida](destination)
+- im going to [tokyo](destination)
+- i want to go to [new york](destination)
+- i want to get to [denver](destination)
+- to [tokyo](destination)
+- lets go to [miami](destination)
+- let's go to [seattle](destination)
+- i want to go to [new york](destination) from [toronto](origin)
+- get me from [miami](origin) to [dallas](destination)
+- im planning on leaving from [august 14](depart_date) to [september 14](return_date)
+- trip is planned from [august 14](depart_date) to [september 14](return_date)
+- i want to go from [jan 14](depart_date) to [apr 14](return_date)
+- leave on [may 14](depart_date) and get back [june 14](return_date)
+- leave on [may 4](depart_date)
+- i want to leave on [january 12](depart_date)
 - i planned to leave on [march 8]
-- come back [may 18] (return_date)
-- return on [february 9] (return_date)
-- planned on being back [april 18] (return_date)
-- my budget is [$2000] (budget)
-- no more than [1000] (budget)
-- max [$400] (budget)
-- [100 dollars] (budget)
-- 100 - [200] (budget)
+- come back [may 18](return_date)
+- return on [february 9](return_date)
+- planned on being back [april 18](return_date)
+- my budget is [$2000](budget)
+- no more than [1000](budget)
+- max [$400](budget)
+- [100 dollars](budget)
+- 100 - [200](budget)
+- I would like to go to [Tokyo](destination)
+- I would like to leave from [Toronto](origin)
+- I would like to leave on [May 10](depart_date)
+- I want to come back on [May 24](return_date)
+- I would like to come back on [May 24](return_date)
+- My budget is [2000](budget) dollars
 
 ## intent:thankyou
 - um thank you good bye
@@ -136,6 +141,7 @@
 - uh okay thank you good bye
 - thank you bye
 - um okay thank you good bye
+- thank you
 
 ## intent:chitchat
 - i want to know the company which designed you

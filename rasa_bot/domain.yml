@@ -1,84 +1,84 @@
-
-intents:
-  - request_flight:
-      use_entities: []
-  - chitchat:
-      use_entities: []
-  - inform
-  - affirm
-  - deny
-  - stop
-  - thankyou
-  - greet
-  - bot_challenge
-
+actions:
+- utter_ask_budget
+- utter_ask_continue
+- utter_ask_depart_date
+- utter_ask_destination
+- utter_ask_origin
+- utter_ask_return_date
+- utter_chitchat
+- utter_default
+- utter_greet
+- utter_iamabot
+- utter_noworries
+- utter_slots_values
+- utter_submit
 entities:
-  - destination
-  - origin
-  - depart_date
-  - return_date
-  - budget
-
+- budget
+- depart_date
+- destination
+- origin
+- return_date
+forms:
+- flight_form
+intents:
+- inform
+- request_flight:
+    use_entities: []
+- greet
+- thankyou
+- chitchat:
+    use_entities: []
+- affirm
+- deny
+- stop
+- bot_challenge
+responses:
+  utter_ask_budget:
+  - text: what is your budget
+  utter_ask_continue:
+  - text: do you want to continue?
+  utter_ask_depart_date:
+  - text: when did you want to leave?
+  utter_ask_destination:
+  - text: where do you want to go?
+  utter_ask_origin:
+  - text: where are you leaving from?
+  utter_ask_return_date:
+  - text: when did you want to be back?
+  utter_chitchat:
+  - text: chitchat
+  utter_default:
+  - text: sorry, I didn't understand you, please try something else
+  utter_greet:
+  - text: Hello! I am flight search assistant! How can I help?
+  utter_iamabot:
+  - text: I am a bot, powered by Rasa.
+  utter_noworries:
+  - text: you are welcome :)
+  utter_slots_values:
+  - text: "I am going to look for flight offers with the info you gave me:\n- destination:\
+      \ {destination}\n- origin: {origin}\n- departing: {depart_date}\n- returning:\
+      \ {return_date}\n- budget: {budget}"
+  utter_submit:
+  - text: All done!
+session_config:
+  carry_over_slots_to_new_session: true
+  session_expiration_time: 60
 slots:
-  destination:
-    type: unfeaturized
-    auto_fill: false
-  origin:
-    type: unfeaturized
-    auto_fill: false
-  depart_date:
-    type: unfeaturized
-    auto_fill: false
-  return_date:
-    type: unfeaturized
-    auto_fill: false
   budget:
-    type: unfeaturized
     auto_fill: false
+    type: unfeaturized
+  depart_date:
+    auto_fill: false
+    type: unfeaturized
+  destination:
+    auto_fill: false
+    type: unfeaturized
+  origin:
+    auto_fill: false
+    type: unfeaturized
   requested_slot:
     type: unfeaturized
-
-responses:
-  utter_ask_destination:
-    - text: "where do you want to go?"
-  utter_ask_origin:
-    - text: "where are you leaving from?"
-  utter_ask_depart_date:
-    - text: "when did you want to leave?"
-  utter_ask_return_date:
-    - text: "when did you want to be back?"
-  utter_ask_budget:
-    - text: "what is your budget"
-  utter_slots_values:
-    - text: "I am going to look for flight offers with the info you gave me:
-
-             - destination: {destination}
-
-             - origin: {origin}
-
-             - departing: {depart_date}
-
-             - returning: {return_date}
-
-             - budget: {budget}"
-  utter_noworries:
-    - text: "you are welcome :)"
-  utter_chitchat:
-    - text: "chitchat"
-  utter_ask_continue:
-    - text: "do you want to continue?"
-  utter_default:
-    - text: "sorry, I didn't understand you, please try something else"
-  utter_greet:
-    - text: "Hello! I am flight search assistant! How can I help?"
-  utter_iamabot:
-    - text: "I am a bot, powered by Rasa."
-  utter_submit:  
-  - text: "All done!"
-
-forms:
-  - flight_form
-
-session_config:
-  session_expiration_time: 60  # value in minutes
-  carry_over_slots_to_new_session: true
+  return_date:
+    auto_fill: false
+    type: unfeaturized
