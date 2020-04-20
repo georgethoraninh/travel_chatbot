@@ -26,8 +26,48 @@ bearer = auth_response.json()['access_token']
 # Airport codes
 airport_df = pd.read_csv('clean_airports.csv')
 
-def _find_flight_offer(location: Text, resource: Text) -> List[Dict]:
-    """Returns json of flight offer matching the search criteria."""
+def location_to_iata(extracted_location):
+    '''
+    Converts the city location to airport code used for API call. 
+    Returns result as a string.
+    '''
+    iata = airport_df[airport_df['City']==location]['IATA'].iloc[0] 
+    return iata
+
+def format_date(extracted_date):
+    '''
+    Converts the date to the format: YYYY-MM-DD 
+    Returns result as a string.
+    '''
+    formatted_date = parser.parse(extracted_date).strftime('%Y-%m-%d')
+    return formatted_date
+
+def _find_flight_offer(origin: Text, destination: Text, depart_date: Text, return_date: Text, budget: Text) -> List[Dict]:
+    
+    '''Returns json of flight offer matching the search criteria'''
+
+    # Retrieves the proper IATA airport codes from the corresponding location
+    origin_iata = location_to_iata(origin)
+    destination_iata = location_to_iata(destination)
+
+    # Retrieves the necessary date information
+    date_tuple = format_date(extracted_date)
+    depart_date = date_tuple[0]
+    return_date = date_tuple[1]
+
+    response = call_api('/shopping/flight-offers',
+                                    origin = origin_iata,
+                                    destination = destination_iata,
+                                    departureDate = depart_date,
+                                    returnDate = return_date,
+                                    adults = '1', # Set ticket search for one adult
+                                    nonStop = 'true', # Returns tickets that have no stops
+                                    currency = 'CAD', # Set currency as CAD 
+                                    maxPrice = extracted_price[0],
+                                    max = '1' # Set the limit of results returned
+                                    )
+    #print(origin_iata,destination_iata,depart_date,return_date,extracted_price[0])
+    return response
     return response
 
 class FlighttForm(FormAction):
