@@ -4,8 +4,8 @@
     - utter_greet
 * request_flight
     - flight_form
-    - form{"name": 'flight_form'}
-    - form{'name': null}
+    - form{"name": "flight_form"}
+    - form{"name": null}
     - utter_slots_values
 * thankyou
     - utter_noworries
