@@ -6,8 +6,9 @@
     - flight_form
     - form{"name": "flight_form"}
     - form{"name": null}
-    - utter_slots_values
-* thankyou
+* affirm
+    - utter_ask_more_help
+* deny
     - utter_noworries
     
 ## chitchat stop but continue path
@@ -37,27 +38,28 @@
     - flight_form
     - form{"name": "flight_form"}
     - slot{"requested_slot": "destination"}
-* form: inform{"destination": "Tokyo"}
+* form: inform{"destination": "new york"}
     - form: flight_form
-    - slot{"destination": "Tokyo"}
+    - slot{"destination": "new york"}
     - slot{"requested_slot": "origin"}
-* form: inform{"origin": "Toronto"}
+* form: inform{"origin": "toronto"}
     - form: flight_form
-    - slot{"origin": "Toronto"}
+    - slot{"origin": "toronto"}
     - slot{"requested_slot": "depart_date"}
-* form: inform{"depart_date": "May 10"}
+* form: inform{"depart_date": "aug 10"}
     - form: flight_form
-    - slot{"depart_date": "May 10"}
+    - slot{"depart_date": "aug 10"}
     - slot{"requested_slot": "return_date"}
-* form: inform{"return_date": "May 24"}
+* form: inform{"return_date": "aug 24"}
     - form: flight_form
-    - slot{"return_date": "May 24"}
+    - slot{"return_date": "aug 24"}
     - slot{"requested_slot": "budget"}
-* form: inform{"budget": "2000"}
+* form: inform{"budget": "800"}
     - form: flight_form
-    - slot{"budget": "2000"}
+    - slot{"budget": "800"}
     - form{"name": null}
     - slot{"requested_slot": null}
-    - utter_slots_values
-* thankyou
+* affirm
+    - utter_ask_more_help
+* deny
     - utter_noworries
