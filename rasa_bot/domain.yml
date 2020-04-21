@@ -3,6 +3,7 @@ actions:
 - utter_ask_continue
 - utter_ask_depart_date
 - utter_ask_destination
+- utter_ask_more_help
 - utter_ask_origin
 - utter_ask_return_date
 - utter_chitchat
@@ -21,26 +22,28 @@ entities:
 forms:
 - flight_form
 intents:
+- affirm
 - inform
+- greet
+- deny
 - request_flight:
     use_entities: []
-- greet
 - thankyou
 - chitchat:
     use_entities: []
-- affirm
-- deny
 - stop
 - bot_challenge
 responses:
   utter_ask_budget:
-  - text: what is your budget
+  - text: what is your budget?
   utter_ask_continue:
   - text: do you want to continue?
   utter_ask_depart_date:
   - text: when did you want to leave?
   utter_ask_destination:
   - text: where do you want to go?
+  utter_ask_more_help:
+  - text: can I help you with anything else?
   utter_ask_origin:
   - text: where are you leaving from?
   utter_ask_return_date:

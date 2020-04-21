@@ -67,6 +67,7 @@
 - cool
 - dope
 - great
+- perfect!
 
 ## intent:deny
 - no
@@ -119,6 +120,11 @@
 - I want to come back on [May 24](return_date)
 - I would like to come back on [May 24](return_date)
 - My budget is [2000](budget) dollars
+- I want to go to [new york](destination)
+- I am coming from [toronto](origin)
+- I want to leave on [aug 10](depart_date)
+- I want to come back on [aug 24](return_date)
+- My budget is [800](budget)
 
 ## intent:thankyou
 - um thank you good bye
