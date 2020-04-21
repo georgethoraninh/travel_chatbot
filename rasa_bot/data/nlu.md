@@ -27,6 +27,7 @@
 - hi?
 - hey bot!
 - hello friend
+- Yo what up
 
 ## intent:request_flight
 - im looking for a flight
@@ -46,6 +47,9 @@
 - i want a flight from [new york](origin) to [toronto](destination)
 - get me a flight from [seattle](origin) to [denver](destination)
 - I want to book a flight
+- I want to book a fligt
+- I want to book a flight somewhere
+- i wanna book a flight
 
 ## intent:affirm
 - correct
@@ -68,6 +72,7 @@
 - dope
 - great
 - perfect!
+- great!
 
 ## intent:deny
 - no
@@ -79,6 +84,9 @@
 - do you have something else
 - no this does not work for me
 - not what i want
+- no im good thank you
+- nope
+- nah im good
 
 ## intent:inform
 - i'm coming from [toronto](origin)
@@ -125,6 +133,88 @@
 - I want to leave on [aug 10](depart_date)
 - I want to come back on [aug 24](return_date)
 - My budget is [800](budget)
+- I want to go to [paris](destination)
+- I am from [toronto](origin)
+- I want to leave on [jan 12](depart_date)
+- I want to leave on [jan 3](depart_date)
+- I want to leave on [feb 2](depart_date)
+- I want to leave on [feb 18](depart_date)
+- I want to leave on [mar 9](depart_date)
+- I want to leave on [mar 23](depart_date)
+- I want to leave on [apr 24](depart_date)
+- I want to leave on [apr 17](depart_date)
+- I want to leave on [may 12](depart_date)
+- I want to leave on [may 16](depart_date)
+- I want to leave on [june 17](depart_date)
+- I want to leave on [june 16](depart_date)
+- I want to leave on [july 12](depart_date)
+- I want to leave on [july 15](depart_date)
+- I want to leave on [aug 10](depart_date)
+- I want to leave on [aug 2](depart_date)
+- I want to leave on [sept 18](depart_date)
+- I want to leave on [sept 13](depart_date)
+- I want to leave on [oct 10](depart_date)
+- I want to leave on [oct 13](depart_date)
+- I want to leave on [nov 14](depart_date)
+- I want to leave on [dec 17](depart_date)
+- I want to leave on [dec 27](depart_date)
+- I want to leave on [nov 13](depart_date)
+- I want to leave [jan 12](depart_date)
+- I want to leave [jan 3](depart_date)
+- I want to leave [feb 2](depart_date)
+- I want to leave [feb 18](depart_date)
+- I want to leave [mar 9](depart_date)
+- I want to leave [mar 23](depart_date)
+- I want to leave [apr 24](depart_date)
+- I want to leave [apr 17](depart_date)
+- I want to leave [may 12](depart_date)
+- I want to leave [may 16](depart_date)
+- I want to leave [june 17](depart_date)
+- I want to leave [june 16](depart_date)
+- I want to leave [july 12](depart_date)
+- I want to leave [july 15](depart_date)
+- I want to leave [aug 10](depart_date)
+- I want to leave [aug 2](depart_date)
+- I want to leave [sept 18](depart_date)
+- I want to leave [sept 13](depart_date)
+- I want to leave [oct 10](depart_date)
+- I want to leave [oct 13](depart_date)
+- I want to leave [nov 14](depart_date)
+- I want to leave [dec 17](depart_date)
+- I want to leave [dec 27](depart_date)
+- I want to leave [nov 13](depart_date)
+- I want to be back [jan 12](return_date)
+- I want to be back [jan 3](return_date)
+- I want to be back [feb 2](return_date)
+- I want to be back [feb 18](return_date)
+- I want to be back [mar 9](return_date)
+- I want to be back [mar 23](return_date)
+- I want to be back [apr 24](return_date)
+- I want to be back [apr 17](return_date)
+- I want to be back [may 12](return_date)
+- I want to be back [may 16](return_date)
+- I want to be back [june 17](return_date)
+- I want to be back [june 16](return_date)
+- I want to be back [july 12](return_date)
+- I want to be back [july 15](return_date)
+- I want to be back [aug 10](return_date)
+- I want to be back [aug 2](return_date)
+- I want to be back [sept 18](return_date)
+- I want to be back [sept 13](return_date)
+- I want to be back [oct 10](return_date)
+- I want to be back [oct 13](return_date)
+- I want to be back [nov 14](return_date)
+- I want to be back [dec 17](return_date)
+- I want to be back [nov 13](return_date)
+- I want to be back [dec 22](return_date)
+- My budget is [$2000](budget)
+- I am leaving from [toronto](origin)
+- My budget is [$1000](budget)
+- i want to go to [vancouver](destination)
+- imma leave from [toronto](origin)
+- i wanna leave [sept 1](depart_date)
+- i wanna be back [sept 20](return_date)
+- max [$500](budget)
 
 ## intent:thankyou
 - um thank you good bye

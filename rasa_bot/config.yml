@@ -14,5 +14,5 @@ policies:
   - name: FallbackPolicy
   - name: MemoizationPolicy
   - name: FormPolicy
-  - name: KerasPolicy
+  - name: TEDPolicy
   - name: MappingPolicy
