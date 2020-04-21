@@ -75,6 +75,9 @@ def _find_flight_offer(origin: Text, destination: Text, depart_date: Text, retur
     formatted_depart_date = format_date(depart_date)
     formatted_return_date = format_date(return_date)
 
+    # Removes $ sign if associated with budget
+    budget = budget.replace('$','')
+
     response = call_api('/shopping/flight-offers',
                                     origin = origin_iata,
                                     destination = destination_iata,
