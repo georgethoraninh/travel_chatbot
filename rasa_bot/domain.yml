@@ -23,11 +23,11 @@ forms:
 - flight_form
 intents:
 - affirm
-- inform
-- greet
-- deny
 - request_flight:
     use_entities: []
+- greet
+- deny
+- inform
 - thankyou
 - chitchat:
     use_entities: []
@@ -53,11 +53,11 @@ responses:
   utter_default:
   - text: sorry, I didn't understand you, please try something else
   utter_greet:
-  - text: Hello! I am flight search assistant! How can I help?
+  - text: "Hello! I am a flight search assistant :airplane: How can I help?"
   utter_iamabot:
   - text: I am a bot, powered by Rasa.
   utter_noworries:
-  - text: you are welcome :)
+  - text: "you are welcome :slightly_smiling_face:"
   utter_slots_values:
   - text: "I am going to look for flight offers with the info you gave me:\n- destination:\
       \ {destination}\n- origin: {origin}\n- departing: {depart_date}\n- returning:\
