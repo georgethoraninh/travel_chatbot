@@ -161,10 +161,13 @@ class FlighttForm(FormAction):
             arrive_flight_dict = list_to_dict([*services_dict['services'][1].values()], 2)
             num_ticket_avail = depart_flight_dict['pricingDetailPerAdult']['availability']
 
-            depart_time = depart_flight_dict['flightSegment']['departure']['at']
-            arrival_time = depart_flight_dict['flightSegment']['arrival']['at']
-            depart_time = format_time(depart_time)
-            arrival_time = format_time(arrival_time)
+            # Departing flight segment
+            depart_time_depart = format_time(depart_flight_dict['flightSegment']['departure']['at'])
+            arrival_time_depart = format_time(depart_flight_dict['flightSegment']['arrival']['at'])
+
+            # Returning flight segment
+            depart_time_return = format_time(arrive_flight_dict['flightSegment']['departure']['at'])
+            arrival_time_return = format_time(arrive_flight_dict['flightSegment']['arrival']['at'])
 
             depart_iata = depart_flight_dict['flightSegment']['departure']['iataCode']
             arrival_iata = depart_flight_dict['flightSegment']['arrival']['iataCode']
@@ -176,10 +179,10 @@ class FlighttForm(FormAction):
                     if flight_carrier == key:
                             flight_carrier_str = value
 
-            # crafting response for user
             num_offer+=1
-            # response_str = 'Flight Offer ' + str(num_offer) + ': ' + extracted_location[0] + ' (' + iata_code[0] + ') --> ' + extracted_location[1] +  ' (' + iata_code[1] + ')\nDeparting at: ' + depart_time + '\nArriving at: ' + arrival_time + '\nTrip Duration: ' + trip_duration + '\nFlight Carrier: ' + flight_carrier_str + '\nPrice: $' + price + ' CAD\n' + str(num_ticket_avail) + ' tickets left!'
-            response_str = (f'There\'s a flight from {origin} ({depart_iata}) to {destination} ({arrival_iata}) with {flight_carrier_str} that cost ${price} CAD. It\'d be from {depart_time} to {arrival_time}. Is that okay?')
+
+            # Response for user
+            response_str = (f'There\'s a flight to {destination} ({arrival_iata}) with {flight_carrier_str} that cost ${price} CAD. It\'d be from {depart_time_depart} to {arrival_time_depart}. You will return to {origin} ({depart_iata}) on a flight at {depart_time_return} to {arrival_time_return}. Is that okay?')
             
             offer_list.append(response_str)
         
