@@ -44,14 +44,23 @@ def format_date(extracted_date):
     formatted_date = parser.parse(extracted_date).strftime('%Y-%m-%d')
     return formatted_date
 
-# Converts a list to dict; removal is an integer to delimit the square brackets
 def list_to_dict(list_to_convert, removal):
     '''
     Converts a list to dict.
     Removal is an integer to delimit the square brackets.
+    Returns a dict.
     '''
     converted_dict = json.loads(str(list_to_convert)[removal:-removal].replace('\'','\"')) 
     return converted_dict
+
+def format_time(time_string):
+    '''
+    Converts a string to time.
+    Returns a string with proper format.
+    '''
+    format_time = datetime.strptime(time_string[0:-9], '%Y-%m-%dT%H:%M').time()
+    format_time = format_time.strftime('%I:%M%p')
+    return format_time
 
 # API has quotas, so better to cache everything
 @lru_cache(maxsize=2048)
@@ -139,8 +148,6 @@ class FlighttForm(FormAction):
 
         flight_offer_json = _find_flight_offer(origin, destination, depart_date, return_date, budget)
 
-        iata_code = list(flight_offer_json['dictionaries']['locations'].keys())
-        
         # Capitlized the first letter of every word in the location
         origin = origin.title()
         destination = destination.title()
@@ -153,11 +160,18 @@ class FlighttForm(FormAction):
             depart_flight_dict = list_to_dict([*services_dict['services'][0].values()], 2)
             arrive_flight_dict = list_to_dict([*services_dict['services'][1].values()], 2)
             num_ticket_avail = depart_flight_dict['pricingDetailPerAdult']['availability']
-            # depart time - needs parsing 
+
             depart_time = depart_flight_dict['flightSegment']['departure']['at']
             arrival_time = depart_flight_dict['flightSegment']['arrival']['at']
+            depart_time = format_time(depart_time)
+            arrival_time = format_time(arrival_time)
+
+            depart_iata = depart_flight_dict['flightSegment']['departure']['iataCode']
+            arrival_iata = depart_flight_dict['flightSegment']['arrival']['iataCode']
+
             trip_duration = depart_flight_dict['flightSegment']['duration']
             flight_carrier = depart_flight_dict['flightSegment']['carrierCode']
+
             for key, value in flight_offer_json['dictionaries']['carriers'].items():
                     if flight_carrier == key:
                             flight_carrier_str = value
@@ -165,7 +179,8 @@ class FlighttForm(FormAction):
             # crafting response for user
             num_offer+=1
             # response_str = 'Flight Offer ' + str(num_offer) + ': ' + extracted_location[0] + ' (' + iata_code[0] + ') --> ' + extracted_location[1] +  ' (' + iata_code[1] + ')\nDeparting at: ' + depart_time + '\nArriving at: ' + arrival_time + '\nTrip Duration: ' + trip_duration + '\nFlight Carrier: ' + flight_carrier_str + '\nPrice: $' + price + ' CAD\n' + str(num_ticket_avail) + ' tickets left!'
-            response_str = (f'Your flight from {origin} ({iata_code[0]}) to {destination} ({iata_code[1]}) would be with {flight_carrier_str} and cost ${price} CAD, from {depart_time} to {arrival_time}. Is that okay?')
+            response_str = (f'There\'s a flight from {origin} ({depart_iata}) to {destination} ({arrival_iata}) with {flight_carrier_str} that cost ${price} CAD. It\'d be from {depart_time} to {arrival_time}. Is that okay?')
+            
             offer_list.append(response_str)
         
         response = '\n'.join(offer_list)
