@@ -2,17 +2,18 @@
 language: en
 
 pipeline:
-  - name: "SpacyNLP"
-  - name: "SpacyTokenizer"
-  - name: "SpacyFeaturizer"
-  - name: "RegexFeaturizer"
-  - name: "CRFEntityExtractor"
-  - name: "EntitySynonymMapper"
-  - name: "SklearnIntentClassifier"
+  - name: "SpacyNLP"                  # initializes spaCy structures
+    model: "en_core_web_md"           # language model
+  - name: "SpacyTokenizer"            # creates tokens
+  - name: "SpacyFeaturizer"           # creates features for entity extraction, intent classification
+  - name: "RegexFeaturizer"           # creates a vector representation of user message using regular expressions
+  - name: "CRFEntityExtractor"        # entity recognition
+  - name: "EntitySynonymMapper"       # maps synonymous entity values to the same value
+  - name: "SklearnIntentClassifier"   # trains a linear SVM which gets optimized using a grid search
 
 policies:
-  - name: FallbackPolicy
-  - name: MemoizationPolicy
-  - name: FormPolicy
-  - name: TEDPolicy
-  - name: MappingPolicy
+  - name: FallbackPolicy              # executes fall back action if intent confidence is below threshold
+  - name: MemoizationPolicy           # memorizes the conversations in training data
+  - name: FormPolicy                  # extension of the MemoizationPolicy which handles the filling of forms
+  - name: TEDPolicy                   # helps to select which action the assistant should take next 
+  - name: MappingPolicy               # directly maps intents to actions
