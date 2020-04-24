@@ -26,7 +26,7 @@ auth_response = requests.post('https://api.amadeus.com/v1/security/oauth2/token'
 bearer = auth_response.json()['access_token']
 
 # Airport codes
-airport_df = pd.read_csv('clean_airports.csv')
+airport_df = pd.read_csv('csv_files/clean_airports.csv')
 
 def location_to_iata(extracted_location):
     '''
