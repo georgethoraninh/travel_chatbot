@@ -15,5 +15,5 @@ policies:
   - name: FallbackPolicy              # executes fall back action if intent confidence is below threshold
   - name: MemoizationPolicy           # memorizes the conversations in training data
   - name: FormPolicy                  # extension of the MemoizationPolicy which handles the filling of forms
-  - name: TEDPolicy                   # helps to select which action the assistant should take next 
+  - name: TEDPolicy                   # helps to select which action the assistant should take next based on similarity
   - name: MappingPolicy               # directly maps intents to actions
