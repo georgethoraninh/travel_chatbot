@@ -36,7 +36,7 @@ def location_to_iata(extracted_location):
     iata = airport_df[airport_df['City']==extracted_location]['IATA'].iloc[0] 
     return iata
 
-def format_date(extracted_date):
+def parse_date(extracted_date):
     '''
     Converts the date to the format: YYYY-MM-DD 
     Returns result as a string.
@@ -58,18 +58,26 @@ def format_time(time_string):
     Converts a string to time.
     Returns a string with proper format.
     '''
-    format_time = datetime.strptime(time_string[0:-9], '%Y-%m-%dT%H:%M').time()
-    format_time = format_time.strftime('%I:%M%p')
-    return format_time
+    formatted_time = datetime.strptime(time_string[0:-9], '%Y-%m-%dT%H:%M').time()
+    formatted_time = formatted_time.strftime('%I:%M%p')
+    return formatted_time
+
+def format_date(date_string):
+    '''
+    Converts a string to date.
+    Returns a string with proper format.
+    '''
+    formatted_date = datetime.strptime(date_string[0:-9], '%Y-%m-%dT%H:%M').date()
+    formatted_date = formatted_date.strftime('%b %d %Y')
+    return formatted_date
 
 # API has quotas, so better to cache everything
 @lru_cache(maxsize=2048)
 def call_api(url, **params):
     full_url = f'https://api.amadeus.com/v1{url}'
     response = requests.get(full_url,
-                                                    params=params,
-                                                    headers={'Authorization': f'Bearer {bearer}',
-                                                                     'Content-Type': 'application/vnd.amadeus+json'})
+                            params=params,
+                            headers={'Authorization': f'Bearer {bearer}','Content-Type': 'application/vnd.amadeus+json'})
     return response.json()
 
 def _find_flight_offer(origin: Text, destination: Text, depart_date: Text, return_date: Text, budget: Text) -> List[Dict]:
@@ -81,23 +89,23 @@ def _find_flight_offer(origin: Text, destination: Text, depart_date: Text, retur
     destination_iata = location_to_iata(destination)
 
     # Converts date to proper format 
-    formatted_depart_date = format_date(depart_date)
-    formatted_return_date = format_date(return_date)
+    formatted_depart_date = parse_date(depart_date)
+    formatted_return_date = parse_date(return_date)
 
     # Removes $ sign if associated with budget
     budget = budget.replace('$','')
 
     response = call_api('/shopping/flight-offers',
-                                    origin = origin_iata,
-                                    destination = destination_iata,
-                                    departureDate = formatted_depart_date,
-                                    returnDate = formatted_return_date,
-                                    adults = '1', # Set ticket search for one adult
-                                    nonStop = 'true', # Returns tickets that have no stops
-                                    currency = 'CAD', # Set currency as CAD 
-                                    maxPrice = budget, # Future: validate 
-                                    max = '1' # Set the limit of results returned
-                                    )
+                        origin = origin_iata,
+                        destination = destination_iata,
+                        departureDate = formatted_depart_date,
+                        returnDate = formatted_return_date,
+                        adults = '1', # Set ticket search for one adult
+                        nonStop = 'true', # Returns tickets that have no stops
+                        currency = 'CAD', # Set currency as CAD 
+                        maxPrice = budget, # Future: validate 
+                        max = '1' # Set the limit of results returned
+                        )
     #print(origin_iata,destination_iata,depart_date,return_date,extracted_price[0])
     return response
 
@@ -163,11 +171,19 @@ class FlighttForm(FormAction):
 
             # Departing flight segment
             depart_time_depart = format_time(depart_flight_dict['flightSegment']['departure']['at'])
+            depart_date_depart = format_date(depart_flight_dict['flightSegment']['departure']['at'])
+
             arrival_time_depart = format_time(depart_flight_dict['flightSegment']['arrival']['at'])
+            arrival_date_depart = format_date(depart_flight_dict['flightSegment']['arrival']['at'])
+
 
             # Returning flight segment
             depart_time_return = format_time(arrive_flight_dict['flightSegment']['departure']['at'])
+            depart_date_return = format_date(arrive_flight_dict['flightSegment']['departure']['at'])
+
             arrival_time_return = format_time(arrive_flight_dict['flightSegment']['arrival']['at'])
+            arrival_date_return = format_date(arrive_flight_dict['flightSegment']['arrival']['at'])
+
 
             depart_iata = depart_flight_dict['flightSegment']['departure']['iataCode']
             arrival_iata = depart_flight_dict['flightSegment']['arrival']['iataCode']
@@ -182,7 +198,7 @@ class FlighttForm(FormAction):
             num_offer+=1
 
             # Response for user
-            response_str = (f'There\'s a flight to {destination} ({arrival_iata}) with {flight_carrier_str} that cost ${price} CAD. It\'d be from {depart_time_depart} to {arrival_time_depart}. You will return to {origin} ({depart_iata}) on a flight at {depart_time_return} to {arrival_time_return}. Is that okay?')
+            response_str = (f'There\'s a flight to {destination} ({arrival_iata}) with {flight_carrier_str} that cost ${price} CAD. It\'d be from {depart_date_depart} {depart_time_depart} to {arrival_date_depart} {arrival_time_depart}. You will return to {origin} ({depart_iata}) on a flight at {depart_date_return} {depart_time_return} to {arrival_date_return} {arrival_time_return}. Is that okay?')
             
             offer_list.append(response_str)
         
