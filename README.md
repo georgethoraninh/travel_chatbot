@@ -24,27 +24,23 @@ This repo contains some training data and the main files needed to build an assi
 - **actions.py** contains actions used by the chatbot such as searching flight offers
 
 
-## How to use this chatbot?
+## Demo
+![](web/conversation_demo.gif)
+
+
+## Try it for yourself!
+Instead of just looking at the demo, try the application out for yourself by cloning the repo and simply running this command to start up the application:
+
 1. Test the assistant by running:
     ```
     rasa run actions --actions actions&
     rasa shell -m models --endpoints endpoints.yml
     ```
-    This will load the assistant in your command line for you to chat. Note: You need API keys from Amadeus to have access to searching flights in `actions.py`.
+    This will load the assistant in your command line for you to chat. Note: You will need API keys from Amadeus to have access to searching flights in `actions.py`.
 
 2. Run a Rasa server that connects to Slack:
     ```
     rasa run actions --actions actions&
     rasa run -m models -p 5005 --connector slack --credentials credentials.yml
     ```
-
-## Demo
-![](web/conversation_demo.gif)
-
-## Try it for yourself!
-
-Instead of just looking at the demo, try the application out for yourself by cloning the repo and simply running this command to start up the application:
-
-```bash
-python3 app.py
-```
+    Note: You will need a Slack access token and replace it in `credentials.yml`.
