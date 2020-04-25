@@ -40,3 +40,11 @@ This repo contains some training data and the main files needed to build an assi
 
 ## Demo
 ![](web/conversation_demo.gif)
+
+## Try it for yourself!
+
+Instead of just looking at the demo, try the application out for yourself by cloning the repo and simply running this command to start up the application:
+
+```bash
+python3 app.py
+```
