@@ -2,7 +2,7 @@
 
 The purpose of this project is to build a simple chatbot where a user can request flight prices through a conversation.
 
-Presentation of results can be found in this repo as well. Note that work is added onto this repo in a ongoing basis and so the slides represents progress during April 2020.
+Presentation of results can be found in this repo as well. Note that work added to this repo is an ongoing basis and so the slides represent progress during April 2020.
 
 ## Prerequsite
 Notebook and script are written in Python 3. The libraries used for this project are listed under the `requirements.txt` file. It is recommended to first set up a virtual environment and then install the libraries with:
