@@ -7,7 +7,7 @@ pipeline:
   - name: "SpacyTokenizer"            # creates tokens
   - name: "SpacyFeaturizer"           # creates features for entity extraction, intent classification
   - name: "RegexFeaturizer"           # creates a vector representation of user message using regular expressions
-  - name: "CRFEntityExtractor"        # entity recognition
+  - name: "CRFEntityExtractor"        # good for training custom entities
   - name: "EntitySynonymMapper"       # maps synonymous entity values to the same value
   - name: "SklearnIntentClassifier"   # trains a linear SVM which gets optimized using a grid search
 
